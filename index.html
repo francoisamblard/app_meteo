@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Météo d'une ville</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        input, button {
+            padding: 10px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            cursor: pointer;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Météo d'une ville</h1>
+        <input type="text" id="cityInput" placeholder="Entrez le nom de la ville">
+        <button onclick="getWeather()">Obtenir la météo</button>
+        <div id="weatherResult"></div>
+    </div>
+
+    <script>
+        async function getWeather() {
+            const city = document.getElementById('cityInput').value;
+            const apiKey = 'f1283f29f24a6fb386f194344768db66';
+            const apiUrl = `http://api.weatherstack.com/current?access_key=${apiKey}&query=${city}`;
+
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+
+                if (data.error) {
+                    document.getElementById('weatherResult').innerHTML = `<p>Erreur: ${data.error.info}</p>`;
+                } else {
+                    const weather = data.current;
+                    document.getElementById('weatherResult').innerHTML = `
+                        <h2>Météo à ${data.location.name}, ${data.location.country}</h2>
+                        <p>Température: ${weather.temperature}°C</p>
+                        <p>Conditions: ${weather.weather_descriptions[0]}</p>
+                        <p>Humidité: ${weather.humidity}%</p>
+                        <p>Vitesse du vent: ${weather.wind_speed} km/h</p>
+                    `;
+                }
+            } catch (error) {
+                document.getElementById('weatherResult').innerHTML = `<p>Erreur lors de la récupération des données météo.</p>`;
+            }
+        }
+    </script>
+</body>
+</html>
