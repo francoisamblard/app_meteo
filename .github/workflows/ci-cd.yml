@@ -22,6 +22,12 @@ jobs:
         with:
           node-version: '16'
 
+      - name: Create package.json if missing
+        run: |
+          if [ ! -f package.json ]; then
+            echo '{"name": "app_meteo", "version": "1.0.0", "scripts": {"test": "jest"}}' > package.json
+          fi
+
       - name: Install dependencies
         run: npm install
 
