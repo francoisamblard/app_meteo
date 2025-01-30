@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Météo d'une ville</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Météo d'une ville</h1>
+        <input type="text" id="cityInput" placeholder="Entrez le nom de la ville">
+        <button onclick="getWeather()">Obtenir la météo</button>
+        <div id="weatherResult"></div>
+        <div id="favoritesSection">
+            <h2>Villes favorites</h2>
+            <ul id="favoritesList"></ul>
+            <button onclick="saveFavorite()">Ajouter aux favoris</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
