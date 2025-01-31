@@ -22,27 +22,18 @@ jobs:
         with:
           node-version: '16'
 
-      - name: Create package.json if missing
-        run: |
-          if [ ! -f package.json ]; then
-            echo '{"name": "app_meteo", "version": "1.0.0", "scripts": {"test": "jest"}}' > package.json
-          fi
-
       - name: Install dependencies
         run: npm install
 
       - name: Run tests
         run: npm test
 
-  build:
+  build-and-push:
     needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
-      - name: Build Docker image
-        run: docker build -t weather-app .
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v1
@@ -50,7 +41,10 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
 
-      - name: Push Docker image
+      - name: Build Docker image
+        run: docker build -t weather-app .
+
+      - name: Tag and push Docker image
         run: |
           if [[ $GITHUB_REF == refs/tags/* ]]; then
             TAG=${GITHUB_REF#refs/tags/}
