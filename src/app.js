@@ -1,4 +1,4 @@
-// Clé API (à remplacer par votre clé API Weatherstack)
+// Clé API
 const apiKey = 'f1283f29f24a6fb386f194344768db66';
 
 // Fonction pour récupérer la météo
