@@ -1,9 +1,9 @@
 // Clé API (à passer via une variable d'environnement)
 const apiKey = process.env.API_KEY;
 
-// Fonction pour récupérer la météo
 async function getWeather() {
     const city = document.getElementById('cityInput').value;
+    const apiKey = process.env.API_KEY || 'f1283f29f24a6fb386f194344768db66'; // Utilisez votre clé API
     const apiUrl = `http://api.weatherstack.com/current?access_key=${apiKey}&query=${city}`;
 
     try {
@@ -24,6 +24,7 @@ async function getWeather() {
         }
     } catch (error) {
         document.getElementById('weatherResult').innerHTML = `<p>Erreur lors de la récupération des données météo.</p>`;
+        console.error('Erreur:', error);
     }
 }
 
