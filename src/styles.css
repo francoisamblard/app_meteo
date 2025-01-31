@@ -37,18 +37,6 @@ button:hover {
     background-color: #0056b3;
 }
 
-#weatherResult, #favoritesSection {
+#weatherResult {
     margin-top: 20px;
-}
-
-#favoritesList {
-    list-style-type: none;
-    padding: 0;
-}
-
-#favoritesList li {
-    background: #f9f9f9;
-    margin: 5px 0;
-    padding: 10px;
-    border-radius: 4px;
 }
