@@ -4,7 +4,7 @@
   "description": "## What is it? Une application web simple qui affiche la météo d'une ville en utilisant l'API Weatherstack.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
