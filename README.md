@@ -9,7 +9,7 @@ Une application web simple qui affiche la météo d'une ville en utilisant l'API
 3. Sauvegarder des villes favorites.
 
 ## How to build
-1. Clonez le dépôt : `git clone https://github.com/votre-utilisateur/weather-app.git`
+1. Clonez le dépôt : `git clone https://github.com/francoisamblard/app_meteo.git`
 2. Installez les dépendances : `npm install`
 3. Construisez l'image Docker : `docker build -t app_meteo .`
 
